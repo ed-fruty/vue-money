@@ -1,17 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container" id="app">
+    <currency-switcher></currency-switcher>
+    <div class="row">
+      <div class="col-md-12 mt-5">
+        <total></total>
+      </div>
+    </div>
+    <money-form></money-form>
+    <div class="row">
+
+      <div class="col-md-12 py-4">
+        <history-list></history-list>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Total from './components/Total';
+import MoneyForm from "./components/MoneyForm";
+import HistoryList from './components/HistoryList';
+import CurrencySwitcher from './components/CurrencySwitcher';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Total,
+    MoneyForm,
+    HistoryList,
+    CurrencySwitcher,
+  },
+  async mounted() {
+    await this.$store.dispatch('fetchHistory');
   }
 }
 </script>
